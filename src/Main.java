@@ -6,6 +6,7 @@ public class Main {
                 .setAge(12)
                 .setCity("Москва")
                 .build();
+
         person.happyBirthday();
 
         person.hasAdress();
