@@ -21,6 +21,11 @@ public class PersonBuilder {
     }
 
     public PersonBuilder setAge(int age) {
+        if (age < 0) {
+            throw new IllegalArgumentException("Введено некорректное значение  возраста!!!");
+        } else if (age >= 160) {
+            throw new IllegalArgumentException("Скорее всего, введено некорректное значение возраста, если человек не долгожитель!");
+        }
         this.age = age;
         this.ageCondition = Condition.KNOWN;
         return this;
@@ -34,13 +39,9 @@ public class PersonBuilder {
 
     public Person build() {
         Person person = new Person(name, surname);
-       if (surname == null) {
+        if (surname == null) {
             throw new IllegalStateException("Не указана фамилия!!");
-        } else if (age < 0 ) {
-            throw new IllegalArgumentException("Введено некорректное значение  возраста!!!");
-        }else if (age >=160) {
-           throw new IllegalArgumentException("Скорее всего, введено некорректное значение возраста, если человек не долгожитель!");
-       }
+        }
         person.setCity(this.city);
         person.setAge(this.age);
         person.setAgeCondition(this.ageCondition);
